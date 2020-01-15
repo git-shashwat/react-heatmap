@@ -1,0 +1,25 @@
+.header {
+    background-color: $dark-blue;
+}
+
+.header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $l-size 0;
+
+    button {
+        background-color: transparent;
+        font-weight: bold;
+    }
+}
+
+.header__title {
+    color: white;
+    text-decoration: none;
+    h1 {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 4rem;
+        margin: 0;
+    }
+}

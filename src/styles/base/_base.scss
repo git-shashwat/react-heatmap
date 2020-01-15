@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: white;
+    color: $dark-gray;
+    font-family: 'Quicksand', sans-serif;
+    font-size: $m-size;
+    line-height: 1.6em;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.is-active {
+    font-weight: bold;
+}

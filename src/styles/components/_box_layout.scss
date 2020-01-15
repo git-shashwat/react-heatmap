@@ -1,0 +1,24 @@
+.box-layout {
+    background-image: url('/images/bg.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-layout__box {
+    background-color: gainsboro;
+    border-radius: 3px;
+    padding: $l-size $m-size;
+    text-align: center;
+    width: 20em;
+}
+
+.box-layout__title {
+    margin: 0 0 $m-size 0;
+    line-height: 1;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 2px;
+}
