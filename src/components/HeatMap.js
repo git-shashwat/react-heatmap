@@ -6,9 +6,18 @@ import { connect } from 'react-redux';
 import { setPotentialPointer, setActivePointer } from '../actions/pointers';
 
 const Heatmap = (props) => {
-    const pointersCollection = getIntensity(props.xLabel,props.yLabel, props.startYear, props.endYear, props.pestle, props.sector, props.country);
+    const pointersCollection = getIntensity(props.xLabel,props.yLabel, props.startYear, props.endYear, props.pestle, props.sector, props.country, props.measure);
     const Xheaders = pointersCollection.xheaders;
-    const intensityCollection = pointersCollection.pointersCollection;
+    const measureCollection = pointersCollection.pointersCollection;
+
+    if (Xheaders.length === 0) {
+        return (
+            <div className="table-container">
+                <h1>No matches for the applied filters!</h1>
+            </div>
+        );
+    }
+
     return (
         <div className="table-container">
             <Table size="sm" responsive borderless className="table">
@@ -17,14 +26,14 @@ const Heatmap = (props) => {
                         <th></th>
                         {Xheaders.map(header => <th className="table__header" key={header}>{header}</th>)}
                     </tr>
-                    {intensityCollection.map(collection => (
+                    {measureCollection.map(collection => (
                         <tr>
                             <td className="table__sector">{collection.rowLabel}</td>
-                            {collection.rowCollection.map(({ id, intensity, color, columnLabel, relevance, likelihood, url, title }) => {
-                                if (intensity !== "") {
+                            {collection.rowCollection.map(({ id, measure, color, columnLabel, relevance, likelihood, url, title }) => {
+                                if (measure !== "") {
                                     const pointer = {
                                         id,
-                                        intensity,
+                                        measure,
                                         columnLabel,
                                         relevance,
                                         likelihood,
@@ -39,7 +48,7 @@ const Heatmap = (props) => {
                                         <td
                                             className="table__cell"
                                             onClick={() => props.setActivePointer(pointer)}
-                                            title={`${intensity}| ${columnLabel}| ${collection.rowLabel}`}
+                                            title={`${measure}| ${columnLabel}| ${collection.rowLabel}`}
                                             key={id}
                                             >
                                             <p style={{ backgroundColor: color, padding: 0.6+'em', width: 0.6+'em', margin: "auto" }}></p>
@@ -66,7 +75,8 @@ const mapStateToProps = (state) => ({
     endYear: state.filters.endYear,
     pestle: state.filters.pestle,
     sector: state.filters.sector,
-    country: state.filters.country
+    country: state.filters.country,
+    measure: state.filters.measure
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

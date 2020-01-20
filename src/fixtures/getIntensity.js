@@ -5,13 +5,14 @@ import Likelihood from './getLikelihood';
 
 const database = Database();
 
-export default (xLabel, yLabel, startYear, endYear, pestle, sector, country) => {
+export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, measure) => {
     let xheaders = new Set(), yheaders = new Set();
+    let pointersCollection = [];
     database.forEach(data => {
         if (
             data[xLabel] !== ""
             && data[yLabel] !== ""
-            && data.intensity !== ""
+            && data[measure] !== ""
             && data.start_year >= startYear
             && (data.end_year <= endYear)
             && (pestle === 'all' ? true : data.pestle === pestle)
@@ -27,18 +28,17 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country) => 
     yheaders = Array.from(yheaders).sort();
 
     // Actual evaluation
-    let pointersCollection = [];
     for (let i = 0; i < yheaders.length; ++i) {
         let rowCollection = [],
             rowData = {};
         for (let j = 0; j < xheaders.length; ++j) {
-            let intensity = 0, count = 0;
+            let measureReading = 0, count = 0;
             rowData.columnLabel = xheaders[j];
             for (let k = 0; k < database.length; ++k) {
                 if (
                     database[k][yLabel] === yheaders[i]
                     && database[k][xLabel] === xheaders[j]
-                    && database[k].intensity !== ""
+                    && database[k][measure] !== ""
                     && (database[k].start_year >= startYear)
                     && (database[k].end_year <= endYear)
                     && (pestle === 'all' ? true : database[k].pestle === pestle)
@@ -46,8 +46,8 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country) => 
                     && (country === 'all' ? true : database[k].country === country)
                     ) {
 
-                    // Intensity evaluation
-                    intensity += database[k].intensity;
+                    // Measure evaluation
+                    measureReading += database[k][measure];
                     count++;
 
                     // ID evaluation
@@ -71,18 +71,40 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country) => 
             }
 
             // Average intensity 
-            count ? intensity /= count : intensity ;
-            intensity = Math.round(intensity*100)/100;
-            rowData.intensity = intensity;
+            count ? measureReading /= count : measureReading;
+            measureReading = Math.round(measureReading*100)/100;
+            rowData.measure = measureReading;
 
-            if (intensity > 0 && intensity <= 12) {
-                rowCollection.push({ ...rowData , color: "#87CEEB" });
-            } else if (intensity > 12 && intensity <= 30) {
-                rowCollection.push({ ...rowData, color: "#90ee90" });
-            } else if (intensity > 30) {
-                rowCollection.push({ ...rowData, color: "red" });
+            if (measure === 'intensity') {
+                if (measureReading > 0 && measureReading <= 12) {
+                    rowCollection.push({ ...rowData , color: "#87CEEB" });
+                } else if (measureReading > 12 && measureReading <= 30) {
+                    rowCollection.push({ ...rowData, color: "#90ee90" });
+                } else if (measureReading > 30) {
+                    rowCollection.push({ ...rowData, color: "red" });
+                } else {
+                    rowCollection.push({ ...rowData, measure: "", color: "white" });
+                }
+            } else if (measure === 'likelihood') {
+                if (measureReading > 0 && measureReading <= 2) {
+                    rowCollection.push({ ...rowData , color: "#87CEEB" });
+                } else if (measureReading > 2 && measureReading < 3) {
+                    rowCollection.push({ ...rowData, color: "#90ee90" });
+                } else if (measureReading >= 3) {
+                    rowCollection.push({ ...rowData, color: "red" });
+                } else {
+                    rowCollection.push({ ...rowData, measure: "", color: "white" });
+                }
             } else {
-                rowCollection.push({ ...rowData, intensity: "", color: "white" });
+                if (measureReading > 0 && measureReading <= 2) {
+                    rowCollection.push({ ...rowData , color: "#87CEEB" });
+                } else if (measureReading > 2 && measureReading <= 4) {
+                    rowCollection.push({ ...rowData, color: "green" });
+                } else if (measureReading > 4) {
+                    rowCollection.push({ ...rowData, color: "red" });
+                } else {
+                    rowCollection.push({ ...rowData, measure: "", color: "white" });
+                }
             }
         }
         pointersCollection.push({ rowLabel: yheaders[i],rowCollection });

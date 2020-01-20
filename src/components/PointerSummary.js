@@ -6,7 +6,7 @@ const PointerSummary = (props) => {
         return (
             <div className="active-pointer">
                 <h1>{props.pointer.columnLabel}</h1>
-                <p className="active-pointer__sub-title">{`${props.pointer.intensity} | ${props.pointer.relevance} | ${props.pointer.likelihood}`}</p>
+                <p className="active-pointer__sub-title">{`${props.pointer.measure} | ${props.pointer.relevance} | ${props.pointer.likelihood}`}</p>
                 <a className="active-pointer__link" href={props.pointer.url} target="_blank">{props.pointer.title}</a>
                 <br></br>
                 <a className="active-pointer__link" href="#">...more</a>

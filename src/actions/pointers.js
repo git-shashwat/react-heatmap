@@ -2,7 +2,7 @@
 export const setPotentialPointer = (potentialPointer = {
     id: '',
     columnLabel: '',
-    intensity: 0,
+    measure: 0,
     relevance: '',
     likelihood: '' ,
     url: '',
@@ -16,7 +16,7 @@ export const setPotentialPointer = (potentialPointer = {
 export const setActivePointer = (activePointer = {
     id: '',
     columnLabel: '',
-    intensity: 0,
+    measure: 0,
     relevance: '',
     likelihood: '' ,
     url: '',

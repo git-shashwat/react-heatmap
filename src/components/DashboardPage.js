@@ -5,6 +5,7 @@ import PointerSummary from './PointerSummary';
 import TimeSlider from './TimeSlider';
 import Coordinates from './Coordinates';
 import Filters from './Filters';
+import Measures from './Measures';
 
 const DashboardPage = () => (
     <div>
@@ -15,7 +16,10 @@ const DashboardPage = () => (
                 <PointerSummary />
                 <TimeSlider />
                 <Coordinates />
-                <Filters />
+                <div style={{ display: "flex" }}>
+                    <Filters />
+                    <Measures />
+                </div>
             </div>
         </div>
     </div>

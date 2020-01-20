@@ -39,3 +39,9 @@ export const setCountry = (country = '') => ({
     type: 'SET_COUNTRY',
     country
 });
+
+// SET_MEASURE
+export const setMeasure = (measure = '') => ({
+    type: 'SET_MEASURE',
+    measure
+});

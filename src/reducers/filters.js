@@ -47,6 +47,12 @@ export default (state = filtersReducerDefaultState, action) => {
                 country: action.country
             }
 
+        case 'SET_MEASURE':
+            return {
+                ...state,
+                measure: action.measure
+            }
+
         default:
             return state;
     }
