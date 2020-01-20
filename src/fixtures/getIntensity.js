@@ -5,7 +5,7 @@ import Likelihood from './getLikelihood';
 
 const database = Database();
 
-export default (xLabel, yLabel, startYear, endYear) => {
+export default (xLabel, yLabel, startYear, endYear, pestle, sector, country) => {
     let xheaders = new Set(), yheaders = new Set();
     database.forEach(data => {
         if (
@@ -14,6 +14,9 @@ export default (xLabel, yLabel, startYear, endYear) => {
             && data.intensity !== ""
             && data.start_year >= startYear
             && (data.end_year <= endYear)
+            && (pestle === 'all' ? true : data.pestle === pestle)
+            && (sector === 'all' ? true : data.sector === sector)
+            && (country === 'all' ? true : data.country === country)
         ) {
             xheaders.add(data[xLabel]);
             yheaders.add(data[yLabel]);
@@ -38,6 +41,9 @@ export default (xLabel, yLabel, startYear, endYear) => {
                     && database[k].intensity !== ""
                     && (database[k].start_year >= startYear)
                     && (database[k].end_year <= endYear)
+                    && (pestle === 'all' ? true : database[k].pestle === pestle)
+                    && (sector === 'all' ? true : database[k].sector === sector)
+                    && (country === 'all' ? true : database[k].country === country)
                     ) {
 
                     // Intensity evaluation

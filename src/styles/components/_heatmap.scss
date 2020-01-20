@@ -8,7 +8,6 @@
 }
 
 .table {
-    cursor: pointer;
     font-size: $s-size;
     height: 65vh;
 }
@@ -18,6 +17,7 @@
 }
 
 .table__cell {
+    cursor: pointer;
     font-size: $m-size;
     margin-right: $s-size;
     text-align: center;

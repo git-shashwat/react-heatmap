@@ -29,6 +29,24 @@ export default (state = filtersReducerDefaultState, action) => {
                 endYear: action.endYear
             }
         
+        case 'SET_PESTLE':
+            return {
+                ...state,
+                pestle: action.pestle
+            }
+
+        case 'SET_SECTOR':
+            return {
+                ...state,
+                sector: action.sector
+            }
+
+        case 'SET_COUNTRY':
+            return {
+                ...state,
+                country: action.country
+            }
+
         default:
             return state;
     }

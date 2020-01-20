@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { setPotentialPointer, setActivePointer } from '../actions/pointers';
 
 const Heatmap = (props) => {
-    const pointersCollection = getIntensity(props.xLabel,props.yLabel, props.startYear, props.endYear);
+    const pointersCollection = getIntensity(props.xLabel,props.yLabel, props.startYear, props.endYear, props.pestle, props.sector, props.country);
     const Xheaders = pointersCollection.xheaders;
     const intensityCollection = pointersCollection.pointersCollection;
     return (
@@ -63,7 +63,10 @@ const mapStateToProps = (state) => ({
     xLabel: state.filters.xLabel,
     yLabel: state.filters.yLabel,
     startYear: state.filters.startYear,
-    endYear: state.filters.endYear
+    endYear: state.filters.endYear,
+    pestle: state.filters.pestle,
+    sector: state.filters.sector,
+    country: state.filters.country
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

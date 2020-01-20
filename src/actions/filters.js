@@ -21,3 +21,21 @@ export const setEndYear = (endYear = '') => ({
     type: 'SET_END_YEAR',
     endYear
 });
+
+// SET_PESTLE
+export const setPestle = (pestle = '') => ({
+    type: 'SET_PESTLE',
+    pestle
+});
+
+// SET_SECTOR
+export const setSector = (sector = '') => ({
+    type: 'SET_SECTOR',
+    sector
+});
+
+// SET_COUNTRY
+export const setCountry = (country = '') => ({
+    type: 'SET_COUNTRY',
+    country
+});

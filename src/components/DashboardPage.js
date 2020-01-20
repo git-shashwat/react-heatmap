@@ -3,6 +3,8 @@ import Header from './Header';
 import HeatMap from './HeatMap';
 import PointerSummary from './PointerSummary';
 import TimeSlider from './TimeSlider';
+import Coordinates from './Coordinates';
+import Filters from './Filters';
 
 const DashboardPage = () => (
     <div>
@@ -12,6 +14,10 @@ const DashboardPage = () => (
             <div>
                 <PointerSummary />
                 <TimeSlider />
+                <Coordinates />
+            </div>
+            <div>
+                <Filters />
             </div>
         </div>
     </div>

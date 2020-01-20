@@ -1,0 +1,29 @@
+.coordinate-component {
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    margin: $m-size $s-size 0 0;
+    padding: $l-size $l-size;
+    width: 40vw;
+
+    @media (max-width: $desktop-breakpoint) {
+        flex-direction: column;
+    }
+}
+
+.coordinate-component__title {
+    padding-top: $m-size;
+}
+
+.coordinate-component__filter {
+    margin-right: $m-size;
+}
+
+.coordinate-component__select-tag {
+    width: 12em;
+
+    @media (max-width: $desktop-breakpoint) {
+        width: unset;
+    }
+}
