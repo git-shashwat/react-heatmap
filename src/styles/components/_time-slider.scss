@@ -1,0 +1,12 @@
+.time-slider {
+    background-color: white;
+    border-radius: 5px;
+    margin: $m-size $s-size 0 0;
+    padding: $l-size $l-size;
+    width: 40vw;
+}
+
+.time-slider__toggle {
+    margin-top: $s-size;
+    margin-bottom: $m-size;
+}

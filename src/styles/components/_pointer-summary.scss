@@ -1,0 +1,22 @@
+.active-pointer {
+    background-color: white;
+    border-radius: 5px;
+    margin: $m-size $s-size 0 0;
+    padding: $m-size $m-size;
+    text-align: center;
+    width: 40vw;
+}
+
+.active-pointer__sub-title {
+    color: $grey;
+}
+
+.active-pointer__link:hover {
+    text-decoration: none;
+    color: rgb(15, 94, 146);
+    font-weight: 700;
+}
+
+.active-pointer--title {
+    font-size: 2em;
+}

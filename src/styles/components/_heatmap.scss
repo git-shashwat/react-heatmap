@@ -1,0 +1,24 @@
+.table-container {
+    background-color: white;
+    border-radius: 5px;
+    height: 65vh;
+    margin: $m-size;
+    width: 60%;
+    overflow-y: scroll;
+}
+
+.table {
+    cursor: pointer;
+    font-size: $s-size;
+    height: 65vh;
+}
+
+.table__header {
+    text-align: center;
+}
+
+.table__cell {
+    font-size: $m-size;
+    margin-right: $s-size;
+    text-align: center;
+}
