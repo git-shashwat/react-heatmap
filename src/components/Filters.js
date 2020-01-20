@@ -3,56 +3,56 @@ import { connect } from 'react-redux';
 import getHeaders from '../fixtures/getHeaders';
 import { setPestle, setSector, setCountry } from '../actions/filters';
 
-const pestles = getHeaders('pestle');
-const sectors = getHeaders('sector');
-const countries = getHeaders('country');
+const Filters = (props) => {
 
-const Filters = (props) => (
-    <div>
-        <h3>Filters</h3>
-        <div>
-            <h4><label htmlFor="pestle">Pestle</label></h4>
-            <select
-                value={props.pestle}
-                onChange={(e) => props.setPestle(e.target.value)} 
-                id="pestle"
-            >
-                <option value="all">All</option>
-                {pestles.map((pestle) => {
-                    <option value={pestle}>{pestle}</option>
-                })}
-            </select>
-        </div>
+    const pestles = getHeaders('pestle');
+    const sectors = getHeaders('sector');
+    const countries = getHeaders('country');
 
-        <div>
-            <h4><label htmlFor="sector">Sector</label></h4>
-            <select
-                value={props.sector}
-                onChange={(e) => props.setSector(e.target.value)} 
-                id="sector"
-            >
-                <option value="all">All</option>
-                {sectors.map((sector) => {
-                    <option value={sector}>{sector}</option>
-                })}
-            </select>
+    return (
+        <div className="filters-component">
+            <h3 className="filters-component__title">Filters</h3>
+            <div>
+                <h4><label htmlFor="pestle">Pestle</label></h4>
+                <select
+                    value={props.pestle}
+                    onChange={(e) => props.setPestle(e.target.value)} 
+                    id="pestle"
+                    className="filters-component__select-tag"
+                >
+                    <option value="all">All</option>
+                    {pestles.map((pestle) => <option value={pestle}>{pestle}</option>)}
+                </select>
+            </div>
+    
+            <div>
+                <h4><label htmlFor="sector">Sector</label></h4>
+                <select
+                    value={props.sector}
+                    onChange={(e) => props.setSector(e.target.value)} 
+                    id="sector"
+                    className="filters-component__select-tag"
+                >
+                    <option value="all">All</option>
+                    {sectors.map((sector) => <option value={sector}>{sector}</option>)}
+                </select>
+            </div>
+    
+            <div>
+                <h4><label htmlFor="country">Country</label></h4>
+                <select
+                    value={props.country}
+                    onChange={(e) => props.setCountry(e.target.value)} 
+                    id="country"
+                    className="filters-component__select-tag"
+                >
+                    <option value="all">All</option>
+                    {countries.map((country) => <option value={country}>{country}</option>)}
+                </select>
+            </div>
         </div>
-
-        <div>
-            <h4><label htmlFor="country">Country</label></h4>
-            <select
-                value={props.country}
-                onChange={(e) => props.setCountry(e.target.value)} 
-                id="country"
-            >
-                <option value="all">All</option>
-                {countries.map((country) => {
-                    <option value={country}>{country}</option>
-                })}
-            </select>
-        </div>
-    </div>
-);
+    );
+};
 
 const mapStateToProps = (state) => ({
     pestle: state.filters.pestle,

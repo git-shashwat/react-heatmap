@@ -1,0 +1,19 @@
+.filters-component {
+    background-color: white;
+    border-radius: 5px;
+    margin: $m-size $s-size 0 0;
+    padding: $l-size $l-size;
+    width: 25vw;
+}
+
+.filters-component__title {
+    font-weight: 600;
+}
+
+.filters-component__select-tag {
+    width: 15em;
+
+    @media (max-width: $desktop-breakpoint) {
+        width: unset;
+    }
+}

@@ -15,8 +15,6 @@ const DashboardPage = () => (
                 <PointerSummary />
                 <TimeSlider />
                 <Coordinates />
-            </div>
-            <div>
                 <Filters />
             </div>
         </div>
