@@ -6,6 +6,7 @@ import TimeSlider from './TimeSlider';
 import Coordinates from './Coordinates';
 import Filters from './Filters';
 import Measures from './Measures';
+import TopPerformers from './TopPerformers';
 
 const DashboardPage = () => (
     <div>
@@ -22,6 +23,7 @@ const DashboardPage = () => (
                 </div>
             </div>
         </div>
+        <TopPerformers />
     </div>
 );
 

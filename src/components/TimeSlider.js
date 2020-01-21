@@ -3,6 +3,7 @@ import { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { connect } from 'react-redux';
 import { setStartYear, setEndYear } from '../actions/filters';
+import { clearPotentialPointers } from '../actions/pointers';
 import ToggleButton from 'react-toggle-button'
 
 class TimeSlider extends React.Component {
@@ -14,17 +15,22 @@ class TimeSlider extends React.Component {
         this.setState({ currentRange: Range, active: true })
     }
     onNewRange = () => {
+        this.props.clearPotentialPointers();
         this.props.setStartYear(this.state.currentRange[0]);
         this.props.setEndYear(this.state.currentRange[1]);
     }
     render() {
         return (
             <div className="time-slider">
-                {this.state.active ? <h1>Current Range: {`${this.props.startYear} - ${this.props.endYear}`}</h1> : <h1>Select Time Range</h1>}
+                {this.state.active ? <h1>Current Range: {`${this.props.startYear} - ${this.props.endYear}`}</h1> : <h1>Year Range</h1>}
                 <div className="time-slider__toggle">
                 <ToggleButton
                     value={this.state.active || false}
                     onToggle={(active) => {
+                        if (active) {
+                            this.props.setStartYear(2016);
+                            this.props.setEndYear(2022);
+                        }
                         this.setState({ active: !active })
                     }}
                 />
@@ -32,7 +38,7 @@ class TimeSlider extends React.Component {
                 {this.state.active && 
                     <Range 
                         allowCross={false}
-                        defaultValue={this.state.currentRange}
+                        defaultValue={[2016,2022]}
                         min={2016}
                         max={2022}
                         onChange={this.onChangeRange}
@@ -54,7 +60,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     setStartYear: (startYear) => dispatch(setStartYear(startYear)),
-    setEndYear: (endYear) => dispatch(setEndYear(endYear))
+    setEndYear: (endYear) => dispatch(setEndYear(endYear)),
+    clearPotentialPointers: () => dispatch(clearPotentialPointers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimeSlider);

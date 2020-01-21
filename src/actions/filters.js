@@ -40,6 +40,18 @@ export const setCountry = (country = '') => ({
     country
 });
 
+// SET_TOPIC
+export const setTopic = (topic = '') => ({
+    type: 'SET_TOPIC',
+    topic
+});
+
+// SET_REGION
+export const setRegion = (region = '') => ({
+    type: 'SET_REGION',
+    region
+})
+
 // SET_MEASURE
 export const setMeasure = (measure = '') => ({
     type: 'SET_MEASURE',

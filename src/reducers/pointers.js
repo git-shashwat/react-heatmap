@@ -1,17 +1,29 @@
-const pointersDefaultState = [];
+const pointersDefaultState = {
+    potentialPointers: [],
+    activePointer: undefined
+};
 
 export default (state = pointersDefaultState, action) => {
     switch (action.type) {
         case 'SET_POTENTIAL_POINTER':
-            return [
+            const currentPointers = state.potentialPointers;
+            return {
                 ...state,
-                action.potentialPointer
-            ]
+                potentialPointers: [...currentPointers,action.potentialPointer]
+            }
 
         case 'SET_ACTIVE_POINTER':
             return {
+                ...state,
                 activePointer: action.activePointer
             }
+
+        case 'CLEAR_POTENTIAL_POINTERS':
+            return {
+                ...state,
+                potentialPointers: []
+            }
+
         default:
             return state;
     }

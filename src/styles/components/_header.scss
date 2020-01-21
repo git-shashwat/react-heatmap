@@ -4,12 +4,11 @@
 
 .header__content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: $l-size 0;
 
     button {
-        background-color: transparent;
         font-weight: bold;
     }
 }
@@ -21,5 +20,20 @@
         font-family: 'Bebas Neue', cursive;
         font-size: 4rem;
         margin: 0;
+    }
+}
+
+.header__btn-group {
+    display: flex;
+    justify-content: space-between;
+
+    * {
+        margin-right: $s-size;
+    }
+}
+
+button:hover {
+    i {
+        color: yellow;
     }
 }

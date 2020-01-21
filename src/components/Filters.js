@@ -1,55 +1,51 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import getHeaders from '../fixtures/getHeaders';
-import { setPestle, setSector, setCountry } from '../actions/filters';
+import { setPestle, setSector, setCountry, setTopic, setRegion } from '../actions/filters';
+import { clearPotentialPointers } from '../actions/pointers';
 
 const Filters = (props) => {
 
-    const pestles = getHeaders('pestle');
-    const sectors = getHeaders('sector');
-    const countries = getHeaders('country');
+    const filters = ['pestle', 'sector', 'country', 'topic', 'region'].filter(value => value !== props.xLabel && value !== props.yLabel);
+    console.log(filters);
 
     return (
         <div className="filters-component">
             <h3 className="filters-component__title">Filters</h3>
-            <div>
-                <h4><label htmlFor="pestle">Pestle</label></h4>
-                <select
-                    value={props.pestle}
-                    onChange={(e) => props.setPestle(e.target.value)} 
-                    id="pestle"
-                    className="filters-component__select-tag"
-                >
-                    <option value="all">All</option>
-                    {pestles.map((pestle) => <option value={pestle}>{pestle}</option>)}
-                </select>
-            </div>
-    
-            <div>
-                <h4><label htmlFor="sector">Sector</label></h4>
-                <select
-                    value={props.sector}
-                    onChange={(e) => props.setSector(e.target.value)} 
-                    id="sector"
-                    className="filters-component__select-tag"
-                >
-                    <option value="all">All</option>
-                    {sectors.map((sector) => <option value={sector}>{sector}</option>)}
-                </select>
-            </div>
-    
-            <div>
-                <h4><label htmlFor="country">Country</label></h4>
-                <select
-                    value={props.country}
-                    onChange={(e) => props.setCountry(e.target.value)} 
-                    id="country"
-                    className="filters-component__select-tag"
-                >
-                    <option value="all">All</option>
-                    {countries.map((country) => <option value={country}>{country}</option>)}
-                </select>
-            </div>
+            {filters.map(filter => {
+                const filterCollection = getHeaders(filter);
+                let setFilter = '';
+
+                if (filter === 'pestle') {
+                    setFilter = props.setPestle;
+                } else if (filter === 'sector') {
+                    setFilter = props.setSector;
+                } else if (filter === 'country') {
+                    setFilter = props.setCountry;
+                } else if (filter === 'topic') {
+                    setFilter = props.setTopic;
+                } else {
+                    setFilter = props.setRegion;
+                }
+
+                return (
+                    <div>
+                        <h4 className="filters-component__label"><label htmlFor={filter}>{filter}</label></h4>
+                        <select
+                            value={props[filter]}
+                            onChange={(e) => {
+                                setFilter(e.target.value)
+                                props.clearPotentialPointers()
+                            }}
+                            id={filter}
+                            className="filters-component__select-tag"
+                        >
+                            <option value="all">All</option>
+                            {filterCollection.map(value => <option key={value} value={value}>{value}</option>)}
+                        </select>
+                    </div>
+                );
+            })}
         </div>
     );
 };
@@ -57,13 +53,20 @@ const Filters = (props) => {
 const mapStateToProps = (state) => ({
     pestle: state.filters.pestle,
     sector: state.filters.sector,
-    country: state.filters.country
+    country: state.filters.country,
+    topic: state.filters.topic,
+    region: state.filters.region,
+    xLabel: state.filters.xLabel,
+    yLabel: state.filters.yLabel
 });
 
 const mapDispatchToProps = (dispatch) => ({
     setPestle: (pestle) => dispatch(setPestle(pestle)),
     setSector: (sector) => dispatch(setSector(sector)),
-    setCountry: (country) => dispatch(setCountry(country))
+    setCountry: (country) => dispatch(setCountry(country)),
+    setTopic: (topic) => dispatch(setTopic(topic)),
+    setRegion: (region) => dispatch(setRegion(region)),
+    clearPotentialPointers: () => dispatch(clearPotentialPointers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

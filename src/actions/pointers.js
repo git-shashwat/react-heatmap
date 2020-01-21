@@ -1,4 +1,4 @@
-// SET_ACTIVE_POINTER
+// SET_POENTIAL_POINTERS
 export const setPotentialPointer = (potentialPointer = {
     id: '',
     columnLabel: '',
@@ -6,7 +6,8 @@ export const setPotentialPointer = (potentialPointer = {
     relevance: '',
     likelihood: '' ,
     url: '',
-    title: ''
+    title: '',
+    end_year: 0
 }) => ({
     type: 'SET_POTENTIAL_POINTER',
     potentialPointer
@@ -20,8 +21,14 @@ export const setActivePointer = (activePointer = {
     relevance: '',
     likelihood: '' ,
     url: '',
-    title: ''
+    title: '',
+    end_year: 0
 }) => ({
     type: 'SET_ACTIVE_POINTER',
     activePointer
 });
+
+// CLEAR_POTENTIAL_POINTERS
+export const clearPotentialPointers = () => ({
+    type: 'CLEAR_POTENTIAL_POINTERS'
+})

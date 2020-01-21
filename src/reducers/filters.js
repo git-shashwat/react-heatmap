@@ -1,6 +1,14 @@
 const filtersReducerDefaultState = {
-    xLabel: "",
-    yLabel: ""
+    xLabel: "country",
+    yLabel: "sector",
+    startYear: 2016,
+    endYear: 2022,
+    pestle: 'all',
+    sector: 'all',
+    country: 'all',
+    topic: 'all',
+    region: 'all',
+    measure: 'intensity'
 };
 
 export default (state = filtersReducerDefaultState, action) => {
@@ -45,6 +53,18 @@ export default (state = filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 country: action.country
+            }
+
+        case 'SET_TOPIC':
+            return {
+                ...state,
+                topic: action.topic
+            }
+
+        case 'SET_REGION':
+            return {
+                ...state,
+                region: action.region
             }
 
         case 'SET_MEASURE':

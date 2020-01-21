@@ -22,3 +22,14 @@
     margin-right: $s-size;
     text-align: center;
 }
+
+.heatmap-metric {
+    display: flex;
+    margin-top: $m-size;
+}
+
+.heatmap-metric__blob {
+    width: 1em;
+    height: 1em;
+    margin: 0 0.5em 0 0.5em;
+}

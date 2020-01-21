@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setXLabel, setYLabel } from '../actions/filters';
+import { clearPotentialPointers } from '../actions/pointers';
 
 const Coordinates = (props) => (
     <div className="coordinate-component">
@@ -12,7 +13,8 @@ const Coordinates = (props) => (
             value={props.xLabel}
             id="xLabel"
             onChange={(e) => {
-                props.setXLabel(e.target.value)
+                props.setXLabel(e.target.value);
+                props.clearPotentialPointers();
             }}
             >
                 <option value="topic">Topic</option>
@@ -30,6 +32,7 @@ const Coordinates = (props) => (
             id="yLabel"
             onChange={(e) => {
                 props.setYLabel(e.target.value)
+                props.clearPotentialPointers();
             }}
             >
                 <option value="topic">Topic</option>
@@ -49,7 +52,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     setXLabel: (xLabel) => dispatch(setXLabel(xLabel)),
-    setYLabel: (yLabel) => dispatch(setYLabel(yLabel))
+    setYLabel: (yLabel) => dispatch(setYLabel(yLabel)),
+    clearPotentialPointers: () => dispatch(clearPotentialPointers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Coordinates);

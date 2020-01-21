@@ -5,7 +5,7 @@ import Likelihood from './getLikelihood';
 
 const database = Database();
 
-export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, measure) => {
+export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, topic, region, measure) => {
     let xheaders = new Set(), yheaders = new Set();
     let pointersCollection = [];
     database.forEach(data => {
@@ -15,9 +15,11 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, mea
             && data[measure] !== ""
             && data.start_year >= startYear
             && (data.end_year <= endYear)
-            && (pestle === 'all' ? true : data.pestle === pestle)
-            && (sector === 'all' ? true : data.sector === sector)
-            && (country === 'all' ? true : data.country === country)
+            && ((pestle === 'all' || pestle === undefined) ? true : data.pestle === pestle)
+            && ((sector === 'all' || sector === undefined) ? true : data.sector === sector)
+            && ((country === 'all' || country === undefined) ? true : data.country === country)
+            && ((topic === 'all' || topic === undefined) ? true : data.topic === topic)
+            && ((region === 'all' || region === undefined) ? true : data.region === region)
         ) {
             xheaders.add(data[xLabel]);
             yheaders.add(data[yLabel]);
@@ -41,9 +43,11 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, mea
                     && database[k][measure] !== ""
                     && (database[k].start_year >= startYear)
                     && (database[k].end_year <= endYear)
-                    && (pestle === 'all' ? true : database[k].pestle === pestle)
-                    && (sector === 'all' ? true : database[k].sector === sector)
-                    && (country === 'all' ? true : database[k].country === country)
+                    && ((pestle === 'all' || pestle === undefined) ? true : database[k].pestle === pestle)
+                    && ((sector === 'all' || sector === undefined) ? true : database[k].sector === sector)
+                    && ((country === 'all' || country === undefined) ? true : database[k].country === country)
+                    && ((topic === 'all' || topic === undefined) ? true : database[k].topic === topic)
+                    && ((region === 'all' || region === undefined) ? true : database[k].region === region)
                     ) {
 
                     // Measure evaluation
@@ -58,6 +62,9 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, mea
 
                     // Title evaluation
                     rowData.title = database[k].title || 'Not Available';
+
+                    // End Year evaluation
+                    rowData.end_year = database[k].end_year;
 
                     // Relevance mapping
                     rowData.relevance = Relevance(database[k].relevance);
@@ -77,9 +84,9 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, mea
 
             if (measure === 'intensity') {
                 if (measureReading > 0 && measureReading <= 12) {
-                    rowCollection.push({ ...rowData , color: "#87CEEB" });
+                    rowCollection.push({ ...rowData , color: "#08B6CE" });
                 } else if (measureReading > 12 && measureReading <= 30) {
-                    rowCollection.push({ ...rowData, color: "#90ee90" });
+                    rowCollection.push({ ...rowData, color: "#78D637" });
                 } else if (measureReading > 30) {
                     rowCollection.push({ ...rowData, color: "red" });
                 } else {
@@ -87,9 +94,9 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, mea
                 }
             } else if (measure === 'likelihood') {
                 if (measureReading > 0 && measureReading <= 2) {
-                    rowCollection.push({ ...rowData , color: "#87CEEB" });
+                    rowCollection.push({ ...rowData , color: "#08B6CE" });
                 } else if (measureReading > 2 && measureReading < 3) {
-                    rowCollection.push({ ...rowData, color: "#90ee90" });
+                    rowCollection.push({ ...rowData, color: "#78D637" });
                 } else if (measureReading >= 3) {
                     rowCollection.push({ ...rowData, color: "red" });
                 } else {
@@ -97,9 +104,9 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, mea
                 }
             } else {
                 if (measureReading > 0 && measureReading <= 2) {
-                    rowCollection.push({ ...rowData , color: "#87CEEB" });
+                    rowCollection.push({ ...rowData , color: "#08B6CE" });
                 } else if (measureReading > 2 && measureReading <= 4) {
-                    rowCollection.push({ ...rowData, color: "green" });
+                    rowCollection.push({ ...rowData, color: "#78D637" });
                 } else if (measureReading > 4) {
                     rowCollection.push({ ...rowData, color: "red" });
                 } else {
@@ -115,6 +122,3 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, mea
         pointersCollection
     };
 }
-
-// export default (xLabel, yLabel, xheaders, yheaders, startYear, endYear) => {
-// }
