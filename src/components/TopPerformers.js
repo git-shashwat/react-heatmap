@@ -19,15 +19,17 @@ const TopPerformers = (props) => {
         <div className="top-performers">
             <h1 className="top-performers__title">Top {topPerformersCount} {pluralize(props.xLabel)}</h1>
             <CardColumns style={{marginTop: 4+'rem'}}>
-                {topPerformers.map(({ columnLabel, measure, relevance, likelihood, end_year }) => (
-                    <Card className="top-performers__card" border={cardBorderSchemes[Math.floor(Math.random() * Math.floor(4))]}>
-                    <Card.Body>
-                        <Card.Title><h1 style={{color: cardTitleSchemes[Math.floor(Math.random() * Math.floor(4))]}}>{columnLabel}</h1></Card.Title>
-                        <Card.Text>
-                        {measure} | {relevance} | {likelihood} | {end_year}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                {topPerformers.map(({ columnLabel, measure, relevance, likelihood, end_year, url }) => (
+                    <a href={url} target="_blank">
+                        <Card className="top-performers__card" border={cardBorderSchemes[Math.floor(Math.random() * Math.floor(4))]}>
+                        <Card.Body>
+                            <Card.Title><h1 style={{color: cardTitleSchemes[Math.floor(Math.random() * Math.floor(4))]}}>{columnLabel}</h1></Card.Title>
+                            <Card.Text>
+                            {measure} | {relevance} | {likelihood} | {end_year}
+                            </Card.Text>
+                        </Card.Body>
+                        </Card>
+                    </a>
                 ))}
             </CardColumns>
         </div>
