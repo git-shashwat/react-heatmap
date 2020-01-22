@@ -3,7 +3,11 @@ import { MDBDataTable } from 'mdbreact';
 import { connect } from 'react-redux';
 
 const PointersTable = (props) => {
-
+    const potentialPointers = props.potentialPointers;
+    let tableEntries = potentialPointers.map(pointer => ({
+        ...pointer,
+        title: <a href={pointer.url} className="active-pointer__link">{pointer.title}</a>
+    }))
     const data = {
         columns: [
             {
@@ -42,7 +46,7 @@ const PointersTable = (props) => {
                 sort: 'asc'
             }
         ],
-        rows: props.potentialPointers
+        rows: tableEntries
     }
 
     return (

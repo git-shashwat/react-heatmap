@@ -18,7 +18,7 @@ const TopPerformers = (props) => {
     return (
         <div className="top-performers">
             <h1 className="top-performers__title">Top {topPerformersCount} {pluralize(props.xLabel, topPerformersCount)}</h1>
-            <CardColumns style={{marginTop: 4+'rem'}}>
+            <CardColumns style={{marginTop: 4+'rem'}} className="top-performers__card-columns">
                 {topPerformers.map(({ columnLabel, measure, relevance, likelihood, end_year, url }) => (
                     <a href={url} target="_blank">
                         <Card className="top-performers__card" border={cardBorderSchemes[Math.floor(Math.random() * Math.floor(4))]}>

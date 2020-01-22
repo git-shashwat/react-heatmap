@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import AppRouter, { history } from './routers/AppRouter';
+import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import 'normalize.css/normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
