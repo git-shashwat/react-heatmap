@@ -13,8 +13,8 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, top
             data[xLabel] !== ""
             && data[yLabel] !== ""
             && data[measure] !== ""
-            && data.start_year >= startYear
-            && (data.end_year <= endYear)
+            && ((startYear === undefined || startYear === "") ? true : data.start_year >= startYear)
+            && ((endYear === undefined || endYear === "") ? true : data.end_year <= endYear)
             && ((pestle === 'all' || pestle === undefined) ? true : data.pestle === pestle)
             && ((sector === 'all' || sector === undefined) ? true : data.sector === sector)
             && ((country === 'all' || country === undefined) ? true : data.country === country)
@@ -41,8 +41,8 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, top
                     database[k][yLabel] === yheaders[i]
                     && database[k][xLabel] === xheaders[j]
                     && database[k][measure] !== ""
-                    && (database[k].start_year >= startYear)
-                    && (database[k].end_year <= endYear)
+                    && ((startYear === undefined || startYear === "") ? true : database[k].start_year >= startYear)
+                    && ((endYear === undefined || endYear === "") ? true : database[k].end_year <= endYear)
                     && ((pestle === 'all' || pestle === undefined) ? true : database[k].pestle === pestle)
                     && ((sector === 'all' || sector === undefined) ? true : database[k].sector === sector)
                     && ((country === 'all' || country === undefined) ? true : database[k].country === country)
@@ -65,6 +65,24 @@ export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, top
 
                     // End Year evaluation
                     rowData.end_year = database[k].end_year;
+
+                    // Topic evaluation
+                    rowData.topic = database[k].topic;
+
+                    // Sector evaluation
+                    if (database[k].sector !== "") {
+                        rowData.sector = database[k].sector;
+                    }
+
+                    // Region evaluation
+                    if (database[k].region !== "") {
+                        rowData.region = database[k].region;
+                    }
+
+                    // Pestle evaluation
+                    if (database[k].pestle !== "") {
+                        rowData.pestle = database[k].pestle
+                    }
 
                     // Relevance mapping
                     rowData.relevance = Relevance(database[k].relevance);

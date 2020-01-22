@@ -9,7 +9,8 @@
 
 .table {
     font-size: $s-size;
-    height: 65vh;
+    max-height: 65vh;
+    max-width: 60%;
 }
 
 .table__header {
@@ -29,7 +30,7 @@
 }
 
 .heatmap-metric__blob {
-    width: 1em;
-    height: 1em;
-    margin: 0 0.5em 0 0.5em;
+    width: 0.8em;
+    height: 0.8em;
+    margin: 0.5rem;
 }

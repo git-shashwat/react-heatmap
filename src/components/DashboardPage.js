@@ -7,6 +7,7 @@ import Coordinates from './Coordinates';
 import Filters from './Filters';
 import Measures from './Measures';
 import TopPerformers from './TopPerformers';
+import PointersTable from './PointersTable';
 
 const DashboardPage = () => (
     <div>
@@ -24,6 +25,7 @@ const DashboardPage = () => (
             </div>
         </div>
         <TopPerformers />
+        <PointersTable />
     </div>
 );
 

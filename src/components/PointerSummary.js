@@ -9,7 +9,7 @@ const PointerSummary = (props) => {
                 <p className="active-pointer__sub-title">{`${props.pointer.measure} | ${props.pointer.relevance} | ${props.pointer.likelihood}`}</p>
                 <a className="active-pointer__link" href={props.pointer.url} target="_blank">{props.pointer.title}</a>
                 <br></br>
-                <a className="active-pointer__link" href="#">...more</a>
+                <a className="active-pointer__link" href="#pointers-table">...more</a>
             </div>
         );
     } else {

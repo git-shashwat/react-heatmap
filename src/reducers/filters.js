@@ -1,8 +1,8 @@
 const filtersReducerDefaultState = {
     xLabel: "country",
     yLabel: "sector",
-    startYear: 2016,
-    endYear: 2022,
+    startYear: undefined,
+    endYear: undefined,
     pestle: 'all',
     sector: 'all',
     country: 'all',

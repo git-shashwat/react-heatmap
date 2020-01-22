@@ -9,7 +9,7 @@ import ToggleButton from 'react-toggle-button'
 class TimeSlider extends React.Component {
     state = {
         active: false,
-        currentRange: [2016, 2022]
+        currentRange: [2016, 2060]
     }
     onChangeRange = (Range) => {
         this.setState({ currentRange: Range, active: true })
@@ -28,8 +28,11 @@ class TimeSlider extends React.Component {
                     value={this.state.active || false}
                     onToggle={(active) => {
                         if (active) {
+                            this.props.setStartYear(undefined);
+                            this.props.setEndYear(undefined);
+                        } else {
                             this.props.setStartYear(2016);
-                            this.props.setEndYear(2022);
+                            this.props.setEndYear(2060);
                         }
                         this.setState({ active: !active })
                     }}
@@ -38,14 +41,15 @@ class TimeSlider extends React.Component {
                 {this.state.active && 
                     <Range 
                         allowCross={false}
-                        defaultValue={[2016,2022]}
+                        defaultValue={[2016,2060]}
                         min={2016}
-                        max={2022}
+                        max={2060}
                         onChange={this.onChangeRange}
                         onAfterChange={this.onNewRange}
                         trackStyle={[
                             {height: 18+'px'}
                         ]}
+                        pushable={true}
                     />
                 }
             </div>

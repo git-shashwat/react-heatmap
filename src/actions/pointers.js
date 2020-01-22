@@ -7,7 +7,11 @@ export const setPotentialPointer = (potentialPointer = {
     likelihood: '' ,
     url: '',
     title: '',
-    end_year: 0
+    end_year: 0,
+    topic: '',
+    sector: '',
+    region: '',
+    pestle: ''
 }) => ({
     type: 'SET_POTENTIAL_POINTER',
     potentialPointer
@@ -22,7 +26,11 @@ export const setActivePointer = (activePointer = {
     likelihood: '' ,
     url: '',
     title: '',
-    end_year: 0
+    end_year: 0,
+    topic: '',
+    sector: '',
+    region: '',
+    pestle: ''
 }) => ({
     type: 'SET_ACTIVE_POINTER',
     activePointer

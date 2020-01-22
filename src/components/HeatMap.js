@@ -19,7 +19,7 @@ const Heatmap = (props) => {
 
     return (
         <div className="table-container">
-            <Table size="sm" responsive borderless className="table">
+            <Table size="sm" borderless className="table">
                 <tbody>
                     <tr>
                         <th></th>
@@ -28,7 +28,7 @@ const Heatmap = (props) => {
                     {measureCollection.map(collection => (
                         <tr>
                             <td className="table__sector" key={collection.rowLabel}>{collection.rowLabel}</td>
-                            {collection.rowCollection.map(({ id, measure, color, columnLabel, relevance, likelihood, url, title, end_year }) => {
+                            {collection.rowCollection.map(({ id, measure, color, columnLabel, relevance, likelihood, url, title, end_year, topic, sector, region, pestle }) => {
                                 if (measure !== "") {
                                     const pointer = {
                                         id,
@@ -38,7 +38,11 @@ const Heatmap = (props) => {
                                         likelihood,
                                         url,
                                         title,
-                                        end_year
+                                        end_year,
+                                        topic,
+                                        sector,
+                                        region,
+                                        pestle
                                     }
                                     // Isko aage dekhenge speed badhane ke liye
                                     props.setPotentialPointer(pointer);
