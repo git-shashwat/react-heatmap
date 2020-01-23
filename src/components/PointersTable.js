@@ -6,7 +6,7 @@ const PointersTable = (props) => {
     const potentialPointers = props.potentialPointers;
     let tableEntries = potentialPointers.map(pointer => ({
         ...pointer,
-        title: <a href={pointer.url} className="active-pointer__link">{pointer.title}</a>
+        title: <a href={pointer.url} className="active-pointer__link" target="_blank">{pointer.title}</a>
     }))
     const data = {
         columns: [

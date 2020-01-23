@@ -1,6 +1,4 @@
-import uuid from 'uuid/v1';
-
-const database =  [
+[
     {
         "end_year": "",
         "intensity": 6,
@@ -19001,12 +18999,4 @@ const database =  [
         "title": "Earth's surface temperature could exceed historical values as early as 2047.",
         "likelihood": 2
     }
-];
-
-export default () => {
-    database.forEach(dataset => {
-        dataset.id = uuid();
-    });
-
-    return database;
-};
+]

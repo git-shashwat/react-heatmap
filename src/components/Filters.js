@@ -7,13 +7,12 @@ import { clearPotentialPointers } from '../actions/pointers';
 const Filters = (props) => {
 
     const filters = ['pestle', 'sector', 'country', 'topic', 'region'].filter(value => value !== props.xLabel && value !== props.yLabel);
-    console.log(filters);
 
     return (
         <div className="filters-component">
             <h3 className="filters-component__title">Filters</h3>
             {filters.map(filter => {
-                const filterCollection = getHeaders(filter);
+                const filterCollection = getHeaders(props.database,filter);
                 let setFilter = '';
 
                 if (filter === 'pestle') {
@@ -51,6 +50,7 @@ const Filters = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+    database: state.pointers.database,
     pestle: state.filters.pestle,
     sector: state.filters.sector,
     country: state.filters.country,

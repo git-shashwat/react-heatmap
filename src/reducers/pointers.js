@@ -1,10 +1,17 @@
 const pointersDefaultState = {
+    database: [],
     potentialPointers: [],
     activePointer: undefined
 };
 
 export default (state = pointersDefaultState, action) => {
     switch (action.type) {
+        case 'SET_DATABASE':
+            return {
+                ...state,
+                database: action.data
+            }
+
         case 'SET_POTENTIAL_POINTER':
             const currentPointers = state.potentialPointers;
             return {

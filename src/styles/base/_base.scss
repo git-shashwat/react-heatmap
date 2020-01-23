@@ -1,31 +1,31 @@
 * {
-    box-sizing: border-box;
+    box-sizing: border-box  !important;
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 62.5%  !important;
 }
 
 body {
-    background-color: whitesmoke;
-    color: $dark-gray;
-    font-family: 'Quicksand', sans-serif;
-    font-size: $m-size;
-    line-height: 1.6em;
+    background-color: whitesmoke  !important;
+    color: $dark-gray  !important;
+    font-family: 'Quicksand', sans-serif  !important;
+    font-size: $m-size  !important;
+    line-height: 1.6em  !important;
 }
 
 h1 {
-    font-weight: 500;
+    font-weight: 500  !important;
 }
 
 button {
-    cursor: pointer;
+    cursor: pointer  !important;
 }
 
 button:disabled {
-    cursor: default;
+    cursor: default  !important;
 }
 
 .is-active {
-    font-weight: bold;
+    font-weight: bold  !important;
 }

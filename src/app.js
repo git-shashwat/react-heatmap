@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import { setDataBase } from './actions/pointers';
 import 'normalize.css/normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/styles.scss';
@@ -18,4 +19,9 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+fetch("http://localhost:8000/data")
+  .then(res => res.json())
+  .then(data => {
+    store.dispatch(setDataBase(data));
+    ReactDOM.render(jsx, document.getElementById('app'));
+  });

@@ -15,7 +15,6 @@ class TimeSlider extends React.Component {
         this.setState({ currentRange: Range, active: true })
     }
     onNewRange = () => {
-        this.props.clearPotentialPointers();
         this.props.setStartYear(this.state.currentRange[0]);
         this.props.setEndYear(this.state.currentRange[1]);
     }
@@ -34,6 +33,7 @@ class TimeSlider extends React.Component {
                             this.props.setStartYear(2016);
                             this.props.setEndYear(2060);
                         }
+                        this.props.clearPotentialPointers();
                         this.setState({ active: !active })
                     }}
                 />

@@ -1,8 +1,4 @@
-import Database from '../../public/database';
-
-const database = Database();
-
-export default (param) => {
+export default (database, param) => {
     let collection = new Set();
 
     database.forEach(data => {

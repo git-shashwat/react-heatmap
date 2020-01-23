@@ -1,11 +1,8 @@
-import Database from '../../public/database';
 import Relevance from './getRelevance';
 import Impact from './getImpact';
 import Likelihood from './getLikelihood';
 
-const database = Database();
-
-export default (xLabel, yLabel, startYear, endYear, pestle, sector, country, topic, region, measure) => {
+export default (database ,xLabel, yLabel, startYear, endYear, pestle, sector, country, topic, region, measure) => {
     let xheaders = new Set(), yheaders = new Set();
     let pointersCollection = [];
     database.forEach(data => {

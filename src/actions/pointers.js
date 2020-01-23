@@ -1,3 +1,9 @@
+// SET_DATABASE
+export const setDataBase = (data = []) => ({
+    type: 'SET_DATABASE',
+    data
+});
+
 // SET_POENTIAL_POINTERS
 export const setPotentialPointer = (potentialPointer = {
     id: '',
