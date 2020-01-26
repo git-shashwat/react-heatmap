@@ -3,7 +3,7 @@ import { MDBDataTable } from 'mdbreact';
 import { connect } from 'react-redux';
 
 const PointersTable = (props) => {
-    const potentialPointers = props.potentialPointers;
+    const potentialPointers = props.potentialPointers.length ? props.potentialPointers : props.database;
     let tableEntries = potentialPointers.map(pointer => ({
         ...pointer,
         title: <a href={pointer.url} className="active-pointer__link" target="_blank">{pointer.title}</a>
@@ -64,6 +64,7 @@ const PointersTable = (props) => {
 }
 
 const mapStateToProps = (state) => ({
+    database: state.pointers.database,
     potentialPointers: state.pointers.potentialPointers
 });
 
