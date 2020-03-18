@@ -7,7 +7,7 @@
 A data visualization dashboard built using ReactJS.
 
 # Make a visit
-Visit __[Stark Heatmap](https://stark-heatmap.herokuapp.com/)__
+Visit __[Stark Heatmap](http://stark-heatmap.surge.sh/)__
 
 # Features
 - Contains over 1000 data pointers about various industries across the globe.
