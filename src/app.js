@@ -19,7 +19,7 @@ const jsx = (
   </Provider>
 );
 
-fetch("http://localhost:8000/data")
+fetch("/data")
   .then(res => res.json())
   .then(data => {
     store.dispatch(setDataBase(data));
